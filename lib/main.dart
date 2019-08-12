@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
       title: 'TikTok',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            ),
       ),
       home: MyHomePage(),
     );
@@ -46,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   Icon(
                     Icons.music_note,
+                    color: Colors.white,
                     size: 15.0,
                   ),
                   Text(
@@ -76,17 +80,37 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget get actionsToolbar => Container(
         width: 100.0,
-        color: Colors.red[300],
         child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: List<Widget>.generate(
-                5,
-                (_) => Container(
-                      width: 60,
-                      height: 60,
-                      color: Colors.blue[300],
-                      margin: EdgeInsets.only(top: 20.0),
-                    ))),
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _socialAction(icon: Icons.favorite, title: "3.2m"),
+            _socialAction(icon: Icons.chat_bubble, title: "16.4k"),
+            _socialAction(icon: Icons.reply, title: "share", isShare: true),
+          ],
+        ),
+      );
+
+  Widget _socialAction({String title, IconData icon, bool isShare = false}) =>
+      Container(
+        width: 60.0,
+        height: 60.0,
+        child: Column(
+          children: <Widget>[
+            Icon(
+              icon,
+              size: isShare ? 25.0 : 35.0,
+              color: Colors.grey[300],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: isShare ? 5.0 : 2.0),
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontSize: isShare ? 10.0 : 12.0, color: Colors.white),
+              ),
+            ),
+          ],
+        ),
       );
 
   Widget get middleSection => Expanded(
@@ -114,6 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
           topSection,
