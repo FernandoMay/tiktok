@@ -1,0 +1,2 @@
+import 'package:flutter/material.dart';
+class AppSpacing { AppSpacing._(); static const double xs = 4; static const double sm = 8; static const double md = 16; static const double lg = 24; static const double xl = 32; static const double radiusSm = 4; static const double radiusMd = 8; static const double radiusLg = 12; static const EdgeInsets paddingSm = EdgeInsets.all(sm); static const EdgeInsets paddingMd = EdgeInsets.all(md); static const EdgeInsets paddingLg = EdgeInsets.all(lg); }
